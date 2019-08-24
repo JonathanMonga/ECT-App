@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="media_button_bar/css/media_button_bar.css">
+        <link rel="stylesheet" type="text/css" href="ionic/css/ionic.min.css">
+        <meta charset="UTF-8">
+        <title>APP By Jonathan</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+        <link rel="stylesheet" href="asset/w3.css">
+        <link rel="stylesheet" href="asset/main.css">
+        <link rel="stylesheet" type="text/css" href="css/materializes.css">
+        <link rel="stylesheet" type="text/css" href="css/material.min.css">
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Recommended location for your JavaScript libraries -->
+        <!-- These library references (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/mc/hammer.js"></script> -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <!--
+  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+-->
+        <script src="cordova.js" id="xdkJScordova_"></script>
+
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <script type="application/javascript" src="ionic/js/ionic.bundle.js"></script>
+        <script type="application/javascript" src="js/index_init_services.js"></script>
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="xdk/ad/ionic_subpage.js"></script>
+        <script type="application/javascript" src="marginal/marginal-position.js"></script>
+        <script type="application/javascript" src="sidebar/js/hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
+        <script type="application/javascript" src="js/index_uib_w_10_popup.js"></script>
+        <script type="application/javascript" src="js/index_uib_w_11_modal.js"></script>
+        <script type="application/javascript" src="js/index_uib_w_11_actionsheet.js"></script>
+        <script type="application/javascript" src="js/index_uib_w_12_popover.js"></script>
+        <script type="application/javascript" src="js/index_uib_w_14_popup.js"></script>
+
+        <script type="application/javascript" src="asset/w3.js"></script>
+        <script type="application/javascript" src="js/material.min.js"></script>
+        <script src="js/app.js"></script>
+    </head>
+
+    <body ng-app="myApp">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+        <div class="upage vertical-col left" id="mainpage">
+            <!--============== MODAL W3 ===============-->
+            <div class="w3-modal w3-card-4 w3-zoom w3-round" id="w3popupconnexion">
+                <div class="w3-modal-content w3-round w3-padding-left" style="min-height:80px; top:90px" id="w3-popupconnexion-detail">
+
+                </div>
+            </div>
+            <!--======================================-->
+            <div class="grid grid-pad urow uib_row_1 row-height-1" data-uib="layout/row" data-ver="0">
+                <div class="col uib_col_1 col-0_12-12" data-uib="layout/col" data-ver="0">
+                    <div class="center">
+                        <img src="images/ect-flag.jpg" class="uib_w_1"/>
+                    </div>
+                    <form onsubmit="connexion();return false">
+                        <div class="widget-container content-area vertical-col">
+                            <label class="item item-input widget uib_w_1 d-margins" data-uib="ionic/input" data-ver="0">
+                                <i class="icon ion-android-contact ion placeholder-icon"></i>
+                                <input type="text" placeholder="Login" id="connexion_login" required="">
+                            </label>
+                            <label class="item item-input widget uib_w_2 d-margins" data-uib="ionic/input" data-ver="0">
+                                <i class="icon ion-ios7-locked-outline ion placeholder-icon"></i>
+                                <input type="password" placeholder="Mot de passe" id="connexion_mdp" required="">
+                            </label>
+                            <p>&nbsp;</p>
+                            <button class="button widget uib_w_3 d-margins ion clearfix mt-2 button-calm ion-close icon-left green" data-uib="ionic/button" data-ver="0">Connexion</button>
+
+                            <div class="mt-3 center fs-1 indigo-text">
+                                <hr>KONGO 2C
+                                <br>Développé par 
+                                <br>www.kdk-kongodiakati.com
+                                <br>+243 81 305 12 10 / RDC</div>
+
+                            <template class="uib-ionic-popup widget uib_w_10 d-margins" data-uib="ionic/popup" data-ver="0"></template>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </form>
+                </div>
+                <span class="uib_shim"></span>
+            </div>
+        </div>
+        <div class="upage hidden mb-2" id="principal">
+            <p>&nbsp;</p>
+            <div class="upage-outer content-area vertical-col left fixed-header-footer">
+                <!--============== MODAL W3 ===============-->
+                <div class="w3-modal w3-card-4 w3-zoom w3-round" id="w3popup">
+                    <div class="w3-modal-content w3-round w3-padding-left" style="min-height:80px; top:90px" id="w3-popup-detail">
+
+                    </div>
+                </div>
+                <!--======================================-->
+                <div id="accueil" class="upage-content vertical-col left ">
+                    <div class="grid grid-pad urow uib_row_2 row-height-2" data-uib="layout/row" data-ver="0">
+                        <div class="center">
+                            <img src="images/drapeau.jpeg">
+                        </div>
+                        <div class="col uib_col_2 col-0" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area wrapping-col left">
+                                <button class="w3-btn green white-text button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-android-note icon-left" data-uib="ionic/button" data-ver="0" onclick="ouvrir('actualites')" id="menu-btn-actu">Actualités</button>
+                                <button class="w3-btn green white-text button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-android-forums icon-left" data-uib="ionic/button" data-ver="0" onclick="ouvrir('communiques')" id="menu-btn-communique">Communiqués</button>
+                                <button class="w3-btn green white-text button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-android-contacts icon-left" data-uib="ionic/button" data-ver="0" onclick="ouvrir('membres');" id="menu-btn-membre">Membres</button>
+                                <button class="w3-btn green white-text button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-android-call icon-left" data-uib="ionic/button" data-ver="0" onclick="ouvrir('departements');" id="menu-btn-departement">Départements</button>
+                                <template class="uib-ionic-popup widget uib_w_14 d-margins" data-uib="ionic/popup" data-ver="0"></template>
+                                <button class="w3-btn green white-text button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-clipboard icon-left" data-uib="ionic/button" data-ver="0" onclick="ouvrir('actions');" id="menu-btn-action">Actions à mener</button>
+                                <button class="w3-btn green white-text button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-earth icon-left" data-uib="ionic/button" data-ver="0" ng-controller="uib_w_14_popup_controller" onclick="ouvrir('partenaires');" id="menu-btn-partenaire">Partenaires bénéf.</button>
+                                <button class="w3-btn green white-text button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-calculator icon-left" data-uib="ionic/button" data-ver="0" onclick="finances_select();" id="menu-btn-finance">Finances</button>
+                                <button class="w3-btn green white-text button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-calculator icon-left red" data-uib="ionic/button" data-ver="0" onclick="ouvrir('admin');" id="menu-btn-admin">Admin</button>
+                                <button class="w3-btn blue lighten-2 white-text button widget uib_w_7 w-50 mr-02 mb-1 ion ion-calculator icon-left" data-uib="ionic/button" data-ver="0" onclick="deconnexion();">Deconnexion</button>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <ion-header-bar class="bar inner-element uib_w_4 z-100 sh cu bar-calm bar-header green" data-uib="ionic/header" data-ver="0" align-title="center" style="color: red; z-index:100;">
+                    <div class="buttons widget-container content-area horiz-area wrapping-col green" style="">
+                        <button class="button widget uib_w_5 d-margins ion ion-navicon-round icon-only w3-border-white green" data-uib="ionic/button" data-ver="0" id="btn_menu_swip" onclick="activate_subpage('#accueil');" style="font-size:25px"></button>
+                    </div>
+                    <h1 class="title fs-2" style="font-size:30px">E.C.T</h1>
+                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                </ion-header-bar>
+
+                <ion-footer-bar class="bar inner-element uib_w_8 sh bar-positive bar-footer green" data-uib="ionic/footer" data-ver="0" style="z-index:100">
+                    <div class="buttons widget-container content-area horiz-area wrapping-col">
+                        <button class="button widget uib_w_23 d-margins ion button-clear  icon-only" data-uib="ionic/button" data-ver="0" style="font-size:25px; width:30%" onclick="boite_msg();">
+                            <i class="ion ion-android-mail"></i>
+                            <span id="badge-msg" class="w3-badge w3-small fs-1 red bold" style="margin:-80px 0px 120px -10px" data-badge="">1</span>
+                        </button>
+                        <button class="button widget uib_w_24 d-margins ion fs-2 button-clear  icon-only" data-uib="ionic/button" data-ver="0" style="font-size:25px; width:30%" onclick="boite_rdv();">
+                            <i class="ion-ios7-calendar-outline"></i>
+                            <span id="badge-rdv" class="w3-badge w3-small fs-1 red bold" style="margin:-80px 0px 120px -10px" data-badge="">1</span>
+                        </button>
+                        <button class="button widget uib_w_24 d-margins ion fs-2 button-clear  icon-only" data-uib="ionic/button" data-ver="0" style="font-size:25px; width:30%" onclick="anniversaire();">
+                            <i class="ion-icecream"></i>
+                            <span id="badge-anniversaire" class="w3-badge w3-small fs-1 red bold" style="margin:-80px 0px 120px -10px" data-badge=""></span>
+                        </button>
+                    </div>
+                    <h1 class="title"></h1>
+                    <div class="buttons widget-container content-area horiz-area wrapping-col"></div>
+                </ion-footer-bar>
+                <div id="actualites_page" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_5 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="tarea widget uib_w_9 d-margins" data-uib="media/text" data-ver="0" name="uib_w_9">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div class="text-container">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>ACTUALITES</strong>
+                                        </div>
+                                    </div>
+                                    <div class="text-container mt-05" id="actualites_detail">
+
+                                    </div>
+                                </div>
+                                <div class="grid grid-pad urow uib_row_5 row-height-5" data-uib="layout/row" data-ver="0">
+                                    <div class="col uib_col_7 col-1_12-12" data-uib="layout/col" data-ver="0">
+                                        <div class="widget-container content-area vertical-col">
+                                            <span class="uib_shim"></span>
+                                        </div>
+                                    </div>
+                                    <span class="uib_shim"></span>
+                                </div>
+
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="communiques_page" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_5 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="tarea widget uib_w_9 d-margins" data-uib="media/text" data-ver="0" name="uib_w_9">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div class="text-container">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>COMMUNIQUES</strong>
+                                        </div>
+                                    </div>
+                                    <div class="text-container mt-05" id="communiques_detail">
+
+                                    </div>
+                                </div>
+                                <div class="grid grid-pad urow uib_row_5 row-height-5" data-uib="layout/row" data-ver="0">
+                                    <div class="col uib_col_7 col-1_12-12" data-uib="layout/col" data-ver="0">
+                                        <div class="widget-container content-area vertical-col">
+                                            <span class="uib_shim"></span>
+                                        </div>
+                                    </div>
+                                    <span class="uib_shim"></span>
+                                </div>
+
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="membres_page" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_5 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="tarea widget uib_w_9 d-margins" data-uib="media/text" data-ver="0" name="uib_w_9">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div class="text-container mb-05">
+                                        <div class="center p-1 blue lighten-1 white-text w3-round" style="border:1px solid #ccc"><strong>MEMBRES DE LA FONDATION</strong>
+                                        </div>
+                                    </div>
+                                    <div class="text-container" id="membres_detail">
+
+                                    </div>
+                                    <p class="mb-2">&nbsp;</p>
+                                </div>
+                                <div class="grid grid-pad urow uib_row_5 row-height-5" data-uib="layout/row" data-ver="0">
+                                    <div class="col uib_col_7 col-1_12-12" data-uib="layout/col" data-ver="0">
+                                        <div class="widget-container content-area vertical-col">
+                                            <span class="uib_shim"></span>
+                                        </div>
+                                    </div>
+                                    <span class="uib_shim"></span>
+                                </div>
+
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                </div>
+                <div id="departements_page" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_5 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="tarea widget uib_w_9 d-margins" data-uib="media/text" data-ver="0" name="uib_w_9">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div class="text-container">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>DEPARTEMENTS DE LA FONDATION</strong>
+                                        </div>
+                                    </div>
+                                    <div class="text-container" id="departements_detail">
+
+                                    </div>
+                                </div>
+                                <div class="grid grid-pad urow uib_row_5 row-height-5" data-uib="layout/row" data-ver="0">
+                                    <div class="col uib_col_7 col-1_12-12" data-uib="layout/col" data-ver="0">
+                                        <div class="widget-container content-area vertical-col">
+                                            <span class="uib_shim"></span>
+                                        </div>
+                                    </div>
+                                    <span class="uib_shim"></span>
+                                </div>
+
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="actions_page" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_5 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="tarea widget uib_w_9 d-margins" data-uib="media/text" data-ver="0" name="uib_w_9">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>ACTIONS A MENER</strong>
+                                        </div>
+                                    </div>
+                                    <div class="text-container" id="actions_detail">
+
+                                    </div>
+                                </div>
+                                <div class="grid grid-pad urow uib_row_5 row-height-5" data-uib="layout/row" data-ver="0">
+                                    <div class="col uib_col_7 col-1_12-12" data-uib="layout/col" data-ver="0">
+                                        <div class="widget-container content-area vertical-col">
+                                            <span class="uib_shim"></span>
+                                        </div>
+                                    </div>
+                                    <span class="uib_shim"></span>
+                                </div>
+
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="partenaires_page" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_5 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="tarea widget uib_w_9 d-margins" data-uib="media/text" data-ver="0" name="uib_w_9">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>PARTENAIRES BENEFICIAIRES</strong>
+                                        </div>
+                                    </div>
+                                    <div class="text-container" id="partenaires_detail">
+
+                                    </div>
+                                </div>
+                                <div class="grid grid-pad urow uib_row_5 row-height-5" data-uib="layout/row" data-ver="0">
+                                    <div class="col uib_col_7 col-1_12-12" data-uib="layout/col" data-ver="0">
+                                        <div class="widget-container content-area vertical-col">
+                                            <span class="uib_shim"></span>
+                                        </div>
+                                    </div>
+                                    <span class="uib_shim"></span>
+                                </div>
+
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="finances_page" class="upage-content vertical-col left hidden"></div>
+                <div id="finances_entree_page" class="upage-content vertical-col left hidden">
+                    
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_8 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <form onsubmit="entrees(); return false">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>FINANCES / ENTREES</strong>
+                                        </div>
+                                    </div>
+                                    <div class="sbs-container widget uib_w_15 d-margins" data-uib="layout/side_by_side" data-ver="0">
+                                        <div class="leftContent widget-container">
+                                            <label class="item item-input widget uib_w_16 d-margins" data-uib="ionic/input" data-ver="0">
+                                                <i class="icon ion-ios7-calendar-outline ion placeholder-icon"></i>
+                                                
+                                                <input type="date" placeholder="Placeholder" required="" id="entr_dt1" value="2019-06-01">
+                                            </label>
+                                        </div>
+                                        <div class="rightContent widget-container">
+                                            <label class="item item-input widget uib_w_17 d-margins" data-uib="ionic/input" data-ver="0">
+                                                <i class="icon placeholder-icon ion-ios7-calendar-outline ion"></i>
+                                                <input type="date" placeholder="Placeholder" required="" value="2019-06-20" id="entr_dt2">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Visualiser</button>
+                                    <div id="finances_entrees_detail">
+
+                                    </div>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="finances_depense_page" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_8 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <form onsubmit="depenses(); return false">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>FINANCES / DEPENSES</strong>
+                                        </div>
+                                    </div>
+                                    <div class="sbs-container widget uib_w_15 d-margins" data-uib="layout/side_by_side" data-ver="0">
+                                        <div class="leftContent widget-container">
+                                            <label class="item item-input widget uib_w_16 d-margins" data-uib="ionic/input" data-ver="0">
+                                                <i class="icon ion-ios7-calendar-outline ion placeholder-icon"></i>
+                                                <input type="date" placeholder="Placeholder" required="" id="depense_dt1" value="2019-06-01">
+                                            </label>
+                                        </div>
+                                        <div class="rightContent widget-container">
+                                            <label class="item item-input widget uib_w_17 d-margins" data-uib="ionic/input" data-ver="0">
+                                                <i class="icon placeholder-icon ion-ios7-calendar-outline ion"></i>
+                                                <input type="date" placeholder="Placeholder" required="" value="2019-06-20" id="depense_dt2">
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Visualiser</button>
+                                    <div id="finances_depenses_detail">
+
+                                    </div>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="boite_message" class="upage-content vertical-col left hidden">   
+                    <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
+                        <h4 class="text-warning">
+                            <i class="glyphicon glyphicon-envelope"></i>&nbsp;<strong>Messages</strong>
+                            <span class="badge badge-warning float-right fs-1" id="badge-msg"></span>
+                        </h4>
+                        <div class='right'><button class="w3-btn blue white-text w3_small w3-round" onclick="ouvrir('msg_nouveau');">Nouveau</button></div>
+                        <div class="mdl-tabs mdl-js-tabs panel panel-default">
+                            <div class="mdl-tabs__tab-bar panel-heading">
+                                <a href="#msg_tab1" class="mdl-tabs__tab w3-text-indigo is-active" onclick="">Entrants</a>
+                                <a href="#msg_tab2" class="mdl-tabs__tab w3-text-indigo" onclick="msg_envoye();">Sortants</a>
+                            </div>
+                            <div class="panel-body">
+                                <div class="mdl-tabs__panel is-active p-10" id="msg_tab1">
+                                    <div class="" id="liste_msg_ent">
+                                        cool 
+                                    </div>
+                                </div>
+                                <div class="mdl-tabs__panel p-10" id="msg_tab2">
+                                    <div class="" id="liste_msg_sort">
+                                     lskldksld   
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div id="reponse_message" class="upage-content vertical-col left hidden">   
+                    <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
+                        <h4 class="text-warning">
+                            <i class="glyphicon glyphicon-envelope"></i>&nbsp;<strong>Repondre à  <span id="reponse_msg_dest"></span></strong>
+                        </h4>
+                        <input type="hidden" id="reponse_msg_dest_id">
+                        <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+				            <textarea placeholder="Votre message" id="id_envoi_msg_popup" required></textarea>
+                        </label>
+                        <div class="right">
+                            <button class="w3-btn green w3-medium mt-1 white-text w3-round" onclick="envoi_msg_popup()">Répondre</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div id="envoi_message" class="upage-content vertical-col left hidden"> 
+                    <form onsubmit="envoi_msg();return false">
+                    <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
+                        <h4 class="text-warning">
+                            <i class="glyphicon glyphicon-envelope"></i>&nbsp;<strong>Envoi message</strong>
+                        </h4>
+                        <label class="item item-input item-select widget uib_w_20 d-margins" data-uib="ionic/select" data-ver="0">
+                                <div class="input-label">Destinataire</div>
+                                <select required="" id="destinataire_envoi_msg" row="6" required>
+                                </select>
+                        </label>
+                        <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+				            <textarea required placeholder="Votre message" id="contenu_envoi_msg" required></textarea>
+                        </label>
+                        <div class="right">
+                            <button class="w3-btn green w3-medium mt-1 white-text w3-round"  type="submit">Envoyer</button>
+                        </div>
+                        
+                    </div>
+                    </form>
+                </div>
+                <div id="boite_rdv" class="upage-content vertical-col left hidden">  
+                    <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
+                        <h4 class="text-warning">
+                            <i class="glyphicon glyphicon-envelope"></i>&nbsp;<strong>RENDEZ-VOUS</strong>
+                            <span class="badge badge-warning float-right fs-1" id="badge-msg"></span>
+                        </h4>
+                        <div class='right'><button class="w3-btn blue white-text w3_small w3-round" onclick="ouvrir('rdv_nouveau');">Nouveau</button></div>
+                        <div class="mdl-tabs mdl-js-tabs panel panel-default">
+                            <div class="mdl-tabs__tab-bar panel-heading">
+                                <a href="#msg_tab1" class="mdl-tabs__tab w3-text-indigo is-active" onclick="">Aujourd'hui</a>
+                                <a href="#msg_tab2" class="mdl-tabs__tab w3-text-indigo" onclick="msg_envoye();">Demain</a>
+                                <a href="#msg_tab3" class="mdl-tabs__tab w3-text-indigo" onclick="msg_envoye();">A une date</a>
+                            </div>
+                            <div class="panel-body">
+                                <div class="mdl-tabs__panel is-active p-10" id="msg_tab1">
+                                    <div class="" id="liste_rdv_aujourdhui">
+                                        
+                                    </div>
+                                </div>
+                                <div class="mdl-tabs__panel p-10" id="msg_tab2">
+                                    <div class="" id="liste_rdv_demain">
+                                     
+                                    </div>
+                                </div>
+                                <div class="mdl-tabs__panel p-10" id="msg_tab3">
+                                    <div class="" id="liste_msg_sort">
+                                        <form onsubmit="rdv_date(); return false">
+                                            <div class="widget-container content-area vertical-col">
+                                                <div class="sbs-container widget uib_w_15 d-margins" data-uib="layout/side_by_side" data-ver="0">
+                                                    <div class="leftContent widget-container">
+                                                        <label class="item item-input widget uib_w_16 d-margins" data-uib="ionic/input" data-ver="0">
+                                                            <div class="input-label">Date</div>
+                                                            <i class="icon ion-ios7-calendar-outline ion placeholder-icon"></i>
+                                                            <input type="date" placeholder="Placeholder" required="" id="rdv_dt1" value="2019-06-01">
+                                                        </label>
+                                                    </div>
+                                                    <div class="rightContent widget-container">
+                                                        <label class="item item-input widget uib_w_17 d-margins" data-uib="ionic/input" data-ver="0">
+                                                            <i class="icon placeholder-icon ion-ios7-calendar-outline ion"></i>
+                                                            <input type="date" placeholder="Placeholder" required="" value="2019-06-20" id="rdv_dt2">
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Visualiser</button>
+                                                <div id="resultat_rdv_date">
+
+                                                </div>
+                                                <span class="uib_shim"></span>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div id="rdv_nouveau" class="upage-content vertical-col left hidden"> 
+                    <form onsubmit="ajout('rdv');return false">
+                    <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
+                        <h4 class="text-warning">
+                            <i class="glyphicon glyphicon-envelope"></i>&nbsp;<strong>Demande rdv </strong>
+                        </h4>
+                        <label class="item item-input widget uib_w_20 d-margins" data-uib="ionic/select" data-ver="0">
+                                <div class="input-label">Date</div>
+                                <input type="date" id="rdv_date" placeholder="Date" required>
+                        </label>
+                        <label class="item item-input widget uib_w_20 d-margins" data-uib="ionic/select" data-ver="0">
+                                <div class="input-label">Heure</div>
+                                <input type="time" id="rdv_heure" placeholder="Heure" required>
+                        </label>
+                        <label class="item item-input widget uib_w_20 d-margins" data-uib="ionic/select" data-ver="0">
+                                <input type="text" id="rdv_demandeur" placeholder="Demandeur" required>
+                        </label>
+                        <label class="item item-input widget uib_w_20 d-margins" data-uib="ionic/select" data-ver="0">
+                                <input type="text" id="rdv_motif" placeholder="Motif" required>
+                        </label>
+                        <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+				            <textarea required placeholder="Observation" id="rdv_observation" required></textarea>
+                        </label>
+                        <div class="right">
+                            <button class="w3-btn green w3-medium mt-1 white-text w3-round"  type="submit">Enregistrer</button>
+                        </div>
+                        
+                    </div>
+                    </form>
+                </div>
+                <div id="anniversaire" class="upage-content vertical-col left hidden">   
+                    <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
+                        <h4 class="text-warning">
+                            <i class="glyphicon glyphicon-envelope"></i>&nbsp;<strong>ANNIVERSAIRE</strong>
+                            <span class="badge badge-warning float-right fs-1" id="badge-msg"></span>
+                        </h4>
+                        
+                        <div class="mdl-tabs mdl-js-tabs panel panel-default">
+                            <div class="mdl-tabs__tab-bar panel-heading">
+                                <a href="#msg_tab1" class="mdl-tabs__tab w3-text-indigo is-active" onclick="">Aujourd'hui</a>
+                                <a href="#msg_tab2" class="mdl-tabs__tab w3-text-indigo" onclick="msg_envoye();">A venir</a>
+                                
+                            </div>
+                            <div class="panel-body">
+                                <div class="mdl-tabs__panel is-active p-10" id="msg_tab1">
+                                    <div class="" id="anniversaire_aujourdhui">
+                                        
+                                    </div>
+                                </div>
+                                <div class="mdl-tabs__panel p-10" id="msg_tab2">
+                                    <div class="" id="anniversaire_avenir">
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <!--============ ADMIN ===============-->
+                <div id="admin" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_2 row-height-2" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_2 col-0" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area wrapping-col left">
+                                <button class="button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-android-note icon-left" data-uib="ionic/button" data-ver="0" onclick="admin_pop('actualites')" id="admin-btn-actu">Actualités</button>
+                                <button class="button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-android-forums icon-left" data-uib="ionic/button" data-ver="0" onclick="admin_pop('communiques')" id="admin-btn-communique">Communiqués</button>
+                                <button class="button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-android-contacts icon-left" data-uib="ionic/button" data-ver="0" onclick="admin_pop('membres');" id="admin-btn-membre">Membres</button>
+                                <button class="button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-android-call icon-left" data-uib="ionic/button" data-ver="0" onclick="admin_pop('departement');" id="admin-btn-depart">Départements</button>
+                                <template class="uib-ionic-popup widget uib_w_14 d-margins" data-uib="ionic/popup" data-ver="0"></template>
+                                <button class="button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-clipboard icon-left" data-uib="ionic/button" data-ver="0" onclick="admin_pop('action');" id="admin-btn-action">Actions à mener</button>
+                                <button class="button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-earth icon-left" data-uib="ionic/button" data-ver="0" id="admin-btn-partenaire" ng-controller="uib_w_14_popup_controller" onclick="admin_pop('partenaire');">Partenaires bénéf.</button>
+                                <button class="button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-calculator icon-left" data-uib="ionic/button" data-ver="0" onclick="admin_pop('finance_entree');" id="admin-btn-finance_entree">Finances / Entrées</button>
+                                <button class="button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-calculator icon-left" data-uib="ionic/button" data-ver="0" onclick="admin_pop('finance_depense');" id="admin-btn-finance-depense">Finances / Dépenses</button>
+                                <button class="button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-person icon-left" data-uib="ionic/button" data-ver="0" onclick="admin_ouvrir('materiel');" id="admin-btn-materiel">Materiels</button>
+                                <button class="button widget uib_w_7 float-left w-48 mr-02 mb-1 ion ion-person icon-left" data-uib="ionic/button" data-ver="0" onclick="admin_ouvrir('user');" id="admin-btn-user">Gestion des users</button>
+                                <span class="uib_shim"></span>
+                            </div>
+                        </div>
+
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="membres_nouveau" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_8 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <form onsubmit="ajout('membre'); return false">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>NOUVEAU MEMBRE</strong>
+                                        </div>
+                                    </div>
+
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Nom, Postnom, Prenom" required="" id="membre_nom">
+                                    </label>
+                                    <label class="item item-input item-select widget uib_w_20 d-margins" data-uib="ionic/select" data-ver="0">
+                                        <div class="input-label">Sexe</div>
+                                        <select required="" id="membre_sexe">
+                                            <option value="H">Homme</option>
+                                            <option value="F">Femme</option>
+                                        </select>
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <div class="input-label">Date de naiss</div>
+                                        <input type="date" placeholder="Date de naissance" required="" id="membre_datenaiss">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Adresse" id="membre_adresse">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="tel" placeholder="Telephone" id="membre_telephone" required="">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Profession" id="membre_profession" required="">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="email" placeholder="E-mail" id="membre_email" required="">
+                                    </label>
+                                    <label class="item item-input item-select widget uib_w_20 d-margins" data-uib="ionic/select" data-ver="0">
+                                        <div class="input-label">Qualité</div>
+                                        <select id="membre_qualite">
+                                            <option value="me">Membre effectif</option>
+                                            <option value="mp">Membre partenaire</option>
+                                            <option value="ms">Membre sympathisant</option>
+                                            <option value="mh">Membre d'honneur</option>
+                                        </select>
+                                    </label>
+                                    <p>&nbsp;</p>
+                                    <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Enregistrer</button>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="admin_communique" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_8 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <form onsubmit="ajout('communique'); return false">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>COMMUNIQUE / NOUVEAU</strong>
+                                        </div>
+                                    </div>
+
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Titre" required="" id="communique_titre">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <textarea placeholder="Communiqué" id="communique_detail" required=""></textarea>
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <div class="input-label">Date</div>
+                                        <input type="date" placeholder="Date diffusion" required="" id="communique_datediff">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <div class="input-label">Heure</div>
+                                        <input type="time" placeholder="Heure diffusion" id="communique_heurediff">
+                                    </label>
+
+                                    <p>&nbsp;</p>
+                                    <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Enregistrer</button>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="admin_actualite" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_8 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <form onsubmit="ajout('actualite'); return false">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>ACTUALITE / NOUVEAU</strong>
+                                        </div>
+                                    </div>
+
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Titre" required="" id="actualite_titre">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <textarea placeholder="Actualité" id="actualite_detail" required=""></textarea>
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <div class="input-label">Date</div>
+                                        <input type="date" placeholder="Date diffusion" required="" id="actualite_datediff">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <div class="input-label">Heure</div>
+                                        <input type="time" placeholder="Heure diffusion" id="actualite_heurediff">
+                                    </label>
+
+                                    <p>&nbsp;</p>
+                                    <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Enregistrer</button>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="admin_departement" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_8 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <form onsubmit="ajout('departement'); return false">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>DEPARTEMENT / NOUVEAU</strong>
+                                        </div>
+                                    </div>
+
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Nom département" required="" id="departement_nom">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Responsable" required="" id="departement_responsable">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="tel" placeholder="Téléphone" id="departement_telephone">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="email" placeholder="E-mail" id="departement_email">
+                                    </label>
+
+                                    <p>&nbsp;</p>
+                                    <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Enregistrer</button>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="admin_action" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_8 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <form onsubmit="ajout('action'); return false">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>ACTION / NOUVEAU</strong>
+                                        </div>
+                                    </div>
+
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <div class="input-label">Date</div>
+                                        <input type="date" placeholder="Du" required="" id="action_dt">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <div class="input-label">Date</div>
+                                        <input type="date" placeholder="Au" required="" id="action_dt2">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <div class="input-label">Heure</div>
+                                        <input type="time" placeholder="Heure" required="" id="action_heure">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Lieu" required="" id="action_lieu">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Adresse" required="" id="action_adresse">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="tel" placeholder="Téléphone" required="" id="action_telephone">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Type activité" required="" id="action_type_activite">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Nature don" required="" id="action_nature_don">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Bénéficiaire" required="" id="action_beneficiaire">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <textarea placeholder="Observation" id="action_observation" required=""></textarea>
+                                    </label>
+
+                                    <p>&nbsp;</p>
+                                    <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Enregistrer</button>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="admin_partenaire" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_8 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <form onsubmit="ajout('partenaire'); return false">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>PARTENAIRE / NOUVEAU</strong>
+                                        </div>
+                                    </div>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Nom partenaire" required="" id="partenaire_nom">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Activité" required="" id="partenaire_activite">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Ville" required="" id="partenaire_ville">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Adresse" required="" id="partenaire_adresse">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Téléphone" required="" id="partenaire_telephone">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Site web" required="" id="partenaire_site_web">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="email" placeholder="E-mail" required="" id="partenaire_email">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <textarea placeholder="Observation" id="partenaire_observation" required=""></textarea>
+                                    </label>
+
+                                    <p>&nbsp;</p>
+                                    <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Enregistrer</button>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="admin_finance_entree" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_8 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <form onsubmit="ajout('finance_entree'); return false">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>FINANCE / ENTREE</strong>
+                                        </div>
+                                    </div>
+
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <div class="input-label">Date</div>
+                                        <input type="date" placeholder="Date entrée" required="" id="finance_entree_dt">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Montant" required="" id="finance_entree_montant">
+                                    </label>
+                                    <label class="item item-input item-select widget uib_w_19 d-margins" data-uib="ionic/select" data-ver="0">
+                                        <div class="input-label">Monnaie</div>
+                                        <select id="finace_entree_monnaie">
+                                            <option value="USD">USD</option>
+                                            <option value="CDF">CDF</option>
+                                        </select>
+                                    </label>
+
+                                    <p>&nbsp;</p>
+                                    <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Enregistrer</button>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="admin_finance_depense" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_8 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <form onsubmit="ajout('finance_depense'); return false">
+                                <div class="widget-container content-area vertical-col">
+                                    <div class="text-container mb-1">
+                                        <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>FINANCE / DEPENSE</strong>
+                                        </div>
+                                    </div>
+
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <div class="input-label">Date</div>
+                                        <input type="date" placeholder="Date entrée" required="" id="finance_depense_dt">
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Montant" required="" id="finance_depense_montant">
+                                    </label>
+                                    <label class="item item-input item-select widget uib_w_19 d-margins" data-uib="ionic/select" data-ver="0">
+                                        <div class="input-label">Monnaie</div>
+                                        <select id="finance_depense_monnaie">
+                                            <option value="USD">USD</option>
+                                            <option value="CDF">CDF</option>
+                                        </select>
+                                    </label>
+                                    <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                        <input type="text" placeholder="Motif" required="" id="finance_depense_motif">
+                                    </label>
+
+                                    <p>&nbsp;</p>
+                                    <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Enregistrer</button>
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </form>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                </div>
+                <div id="user" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
+                        <h4 class="text-warning">
+                            <i class="glyphicon glyphicon-envelope"></i>&nbsp;<strong>GESTION USERS</strong>
+                            <span class="badge badge-warning float-right fs-1" id="badge-msg"></span>
+                        </h4>
+                        
+                        <div class="mdl-tabs mdl-js-tabs panel panel-default">
+                            <div class="mdl-tabs__tab-bar panel-heading">
+                                <a href="#msg_tab1" class="mdl-tabs__tab w3-text-indigo is-active" onclick="">Nouveau</a>
+                                <a href="#msg_tab2" class="mdl-tabs__tab w3-text-indigo" onclick="msg_envoye();">Liste</a>
+                                
+                            </div>
+                            <div class="panel-body">
+                                <div class="mdl-tabs__panel is-active p-10" id="msg_tab1">
+                                    <div class="" id="user_nouveau">
+                                        <form onsubmit="ajout('user'); return false">
+                                            <div class="widget-container content-area vertical-col">
+                                                <div class="text-container mb-1">
+                                                    <div class="center p-1" style="background:#eee;border:1px solid #ccc"><strong>NOUVEL UTILISATEUR</strong>
+                                                    </div>
+                                                </div>
+                                                <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                                    <input type="text" placeholder="Nom,post,prénom" required="" id="user_nom">
+                                                </label>
+                                                <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                                    <input type="text" placeholder="Login" required="" id="user_login">
+                                                </label>
+                                                <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                                    <input type="text" placeholder="Mot de passe" required="" id="user_mdp">
+                                                </label>
+                                                <label class="item item-input item-select widget uib_w_20 d-margins" data-uib="ionic/select" data-ver="0">
+                                                    <div class="input-label">Privilège</div>
+                                                    <select required id="user_priv">
+                                                        <option value="sec_ad">Sécretaire admin</option>
+                                                        <option value="finan">finances</option>
+                                                        <option value="social">Social et prgm</option>
+                                                        <option value="parte">Partenaiares béfén.</option>
+                                                        <option value="coord">Coordination</option>
+                                                        <option value="admin">Président</option>
+                                                        <option value="membre">Membres</option>
+                                                    </select>
+                                                </label>
+
+
+                                                <p>&nbsp;</p>
+                                                <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Enregistrer</button>
+                                                <span class="uib_shim"></span>
+                                            </div>
+                                        </form>    
+                                    </div>
+                                </div>
+                                <div class="mdl-tabs__panel p-10" id="msg_tab2">
+                                    <div class="" id="user_liste">
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div id="materiels" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
+                        <h4 class="text-warning">
+                            <i class="glyphicon glyphicon-envelope"></i>&nbsp;<strong>GESTION MATERIELS</strong>
+                            <span class="badge badge-warning float-right fs-1" id="badge-msg"></span>
+                        </h4>
+                        
+                        <div class="mdl-tabs mdl-js-tabs panel panel-default">
+                            <div class="mdl-tabs__tab-bar panel-heading">
+                                <a href="#msg_tab1" class="mdl-tabs__tab w3-text-indigo is-active" onclick="">Nouveau</a>
+                                <a href="#msg_tab2" class="mdl-tabs__tab w3-text-indigo" onclick="msg_envoye();">Liste</a>
+                                
+                            </div>
+                            <div class="panel-body">
+                                <div class="mdl-tabs__panel is-active p-10" id="msg_tab1">
+                                    <div class="" id="materiel_nouveau">
+                                        <form onsubmit="ajout('materiel'); return false">
+                                            <div>
+                                                <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                                    <input type='text' placeholder="Libellé" id='materielintendance' required />
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                                    <input type='text' placeholder="Déscription" id='descriptionintendance' required />
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <label class="item item-input widget uib_w_19 d-margins" data-uib="ionic/input" data-ver="0">
+                                                    <input type='number' value="1" min="1" id='qtintendance' required />
+                                                </label>
+                                            </div>
+                                            <div>
+                                                <label class="item item-input item-select widget uib_w_20 d-margins" data-uib="ionic/select" data-ver="0">
+                                                    <div class="input-label">Privilège</div>
+                                                    <select class='form-control browser-default' id='etatintendance' required>
+                                                    <option value='N'>Neuf</option>
+                                                    <option value='B'>Bon état</option>
+                                                    <option value='P'>Panne</option>
+                                                    <option value='D'>Déclassé</option>
+                                                    </select>
+                                                </label>
+                                            </div>
+                                            <div class='p-1 center'>
+                                                <button type="submit" class="button widget uib_w_18 d-margins" data-uib="ionic/button" data-ver="0">Enregistrer</button>
+                                                
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="mdl-tabs__panel p-10" id="msg_tab2">
+                                    <div class="" id="materiel_liste">
+                                     
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div id="template_liste" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_30 row-height-30" data-uib="layout/row" data-ver="0">
+                        <h4 class="text-warning">
+                            <i class="glyphicon glyphicon-envelope"></i>&nbsp;
+                            <strong>
+                                <span id="template_titre"></span>
+                            </strong>
+                        </h4>
+                        
+                        <div id="template_contenu">
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+                <!--=================================-->
+                <div class="inner-element uib_w_21 uib_sidebar leftbar bar-bg bar-gutter swipe fixed" data-uib="layout/left_sidebar" data-ver="1" data-anim="{'style':'push', 'v':200, 'side':'left', 'dur':200}" id="menu_swip" style="z-index:2000">
+                    <div class="sidebar-content content-area vertical-col">
+
+                        <button class="button widget uib_w_22 d-margins" data-uib="ionic/button" data-ver="0">Button</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
